@@ -1,27 +1,27 @@
 package gnc.modele;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * Created by nathanael on 22/05/17.
  */
-public class Personnel {
+public class Personnel extends Observable {
 
     private String id;
     private String matricule;
     private Fonction fonction;
 
-    private List<NonConformite> ncTrouvees;
-    private List<NonConformite> ncImputees;
+    public Personnel() {
+        super();
+    }
 
-    public Personnel() {}
-
-    public Personnel(String id, String matricule, Fonction fonction, List<NonConformite> ncTrouvees, List<NonConformite> ncImputees) {
+    public Personnel(String id, String matricule, Fonction fonction) {
+        super();
         this.id = id;
         this.matricule = matricule;
         this.fonction = fonction;
-        this.ncTrouvees = ncTrouvees;
-        this.ncImputees = ncImputees;
     }
 
     public String getId() {
@@ -38,6 +38,7 @@ public class Personnel {
 
     public void setFonction(Fonction fonction) {
         this.fonction = fonction;
+        this.notifyObservers(this.getFonction());
     }
 
     public String getMatricule() {
@@ -46,13 +47,15 @@ public class Personnel {
 
     public void setMatricule(String matricule) {
         this.matricule = matricule;
+        this.notifyObservers(this.getMatricule());
     }
 
-    public List<NonConformite> getNcTrouvees() {
-        return ncTrouvees;
-    }
-
-    public List<NonConformite> getNcImputees() {
-        return ncImputees;
+    @Override
+    public String toString() {
+        return "Personnel{" +
+                "id='" + id + '\'' +
+                ", matricule='" + matricule + '\'' +
+                ", fonction=" + fonction +
+                '}';
     }
 }

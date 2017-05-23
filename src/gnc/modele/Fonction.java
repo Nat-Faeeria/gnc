@@ -1,5 +1,7 @@
 package gnc.modele;
 
+import java.util.ArrayList;
+
 /**
  * Created by nathanael on 22/05/17.
  */
@@ -11,12 +13,15 @@ public class Fonction {
     private Boolean autorisationImputation;
     private Boolean autorisationAdmin;
 
+    private Personnels personnels;
+
     public Fonction(String code, String libelle, Boolean autorisationNC, Boolean autorisationAdmin, Boolean autorisationImputation) {
         this.code = code;
         this.libelle = libelle;
         this.autorisationNC = autorisationNC;
         this.autorisationAdmin = autorisationAdmin;
         this.autorisationImputation = autorisationImputation;
+        this.personnels = new Personnels();
     }
 
     public String getCode() {
@@ -61,5 +66,20 @@ public class Fonction {
 
     public boolean isAdmin() {
         return getAutorisationAdmin();
+    }
+
+    public Personnels getPersonnels() {
+        return personnels;
+    }
+
+    @Override
+    public String toString() {
+        return "Fonction{" +
+                "code='" + code + '\'' +
+                ", libelle='" + libelle + '\'' +
+                ", autorisationNC=" + autorisationNC +
+                ", autorisationImputation=" + autorisationImputation +
+                ", autorisationAdmin=" + autorisationAdmin +
+                '}';
     }
 }
