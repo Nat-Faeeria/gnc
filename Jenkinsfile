@@ -10,6 +10,7 @@ pipeline {
       }
       steps {
         sh 'javac -d . -sourcepath src  src/gnc/main/GNC.java'
+        sh 'ls'
       }
     }
   }
